@@ -2,16 +2,6 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 
-const config = {
-  // headers: {
-  //   'Authorization': 'Bearer 4hgoLrNLIJi9cFyKDRJ64dXQDhkpHeRUHc-8QQ89W9zaCfr3IufoY7WepA6rSphateXfgusfPC4G-aDJp6pu66J3QrsmWg2VcXK0CjKJTPq7OlSbQBuFijoVrf6rW3Yx',
-  //   'Content-Type': 'application/json',
-  // },
-  params: {
-    'term': 'tacos',
-    //'location': 'Naperville',
-  }
-};
 class List extends Component {
   // Initialize the state
   constructor(props){
@@ -28,29 +18,6 @@ class List extends Component {
     this.handleChangeLocation = this.handleChangeLocation.bind(this);
     this.handleChangeTerm = this.handleChangeTerm.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
-  }
-  componentWillMount() {
-    // axios.get('https://api.yelp.com/v3/businesses/search', config)
-    // axios.get('/api/search'+'/'+'tacos'+'/'+'Naperville')
-    // .then(
-    //   function(response) {
-    //     console.log(response);
-    //     console.log('PJ')
-    //   });
-     // response => console.log(response));
-    }
-
-
-  // Fetch the list on first mount
-  componentDidMount() {
-    this.getList();
-  }
-
-  // Retrieves the list of items from the Express app
-  getList = () => {
-    fetch('/api/getList')
-    .then(res => res.json())
-    .then(list => this.setState({ list }))
   }
 
   handleChangeTerm(event) {

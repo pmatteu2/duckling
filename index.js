@@ -20,7 +20,7 @@ app.get('/api/getList', (req,res) => {
 });
 
 app.get('/api/search/:term/:location', (req,res) => {
-	console.log(req.params)
+	// console.log(req.params)
 	let searchConfig = {
 		headers: config.headers,
 		params: req.params,
@@ -33,7 +33,7 @@ app.get('/api/search/:term/:location', (req,res) => {
 });
 
 app.get('/api/searchb/:id', (req,res) => {
-	console.log(req.params)
+	// console.log(req.params)
 	let searchConfig = {
 		headers: config.headers,
 		//params: req.params,

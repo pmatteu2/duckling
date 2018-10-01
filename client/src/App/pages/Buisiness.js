@@ -14,8 +14,9 @@ class Buisiness extends Component {
     	price: '',
     	rating: 0,
     	name: '',
+    	show: false,
 		};
-    console.log(this.props.match.params.bid)
+    // console.log(this.props.match.params.bid)
   }
   componentWillMount() {
   	let here = this;
@@ -28,7 +29,7 @@ class Buisiness extends Component {
     		let tempEnd = [];
     		let tempRating = '';
     		let tempAddress = data.location.display_address[0]+'. '+data.location.display_address[1]
-    		console.log(data.hours[0].open[0].start)
+    		// console.log(data.hours[0].open[0].start)
     		for (var i = 0 ; i < data.hours[0].open.length ; i++) {
     			tempStart[i] = data.hours[0].open[i].start.slice(0,2)+':'+data.hours[0].open[i].start.slice(2);
     			tempEnd[i] = data.hours[0].open[i].end.slice(0,2)+':'+data.hours[0].open[i].end.slice(2);
@@ -45,10 +46,11 @@ class Buisiness extends Component {
     										img: data.image_url,
     										address: tempAddress,
     										name: data.name,
+    										show:true,
     									})
 
-    		console.log(response)
-    		console.log(here)
+    		// console.log(response)
+    		// console.log(here)
     	});
   }
 
@@ -56,9 +58,11 @@ class Buisiness extends Component {
 
 	render() {
 		let that = this;
-		console.log('pj')
+		// console.log('pj')
 		return (
+			
 			<div className='App'>
+			{that.state.show ? <div>
 				<h1>{that.state.name}</h1>
 				<img src={that.state.img} width='300' height='200'/>
 				<h3>{that.state.phone}</h3>
@@ -83,7 +87,9 @@ class Buisiness extends Component {
 						})}
 					</tr>
 				</table>
+				</div> : <div></div>}
 			</div>
+			
 			);
 	}
 }
