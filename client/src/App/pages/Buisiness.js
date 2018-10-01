@@ -19,6 +19,7 @@ class Buisiness extends Component {
     // console.log(this.props.match.params.bid)
   }
   componentWillMount() {
+  	// here is the call to get the data for the specific buisiness
   	let here = this;
   	axios.get('/api/searchb'+'/'+this.props.match.params.bid)
     .then(

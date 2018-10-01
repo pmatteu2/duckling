@@ -28,6 +28,7 @@ class List extends Component {
   }
 
   handleSubmit(event) {
+    // here is the call to get the list of buisinesses
     let here = this
     // alert('A name was submitted: ' + this.state.term + this.state.location);
     axios.get('/api/search'+'/'+this.state.term+'/'+this.state.location)
