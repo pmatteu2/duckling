@@ -6,13 +6,16 @@ import List from './pages/List';
 import Buisiness from './pages/Buisiness';
 
 class App extends Component {
+  //<Route exact path='/' component={Home}/>
+  // <Route path='/list' component={List}/>
   render() {
     const App = () => (
       <div>
         <Switch>
-          <Route exact path='/' component={Home}/>
-          <Route path='/list' component={List}/>
-          <Route path='/buisiness' component={Buisiness}/>
+          
+          <Route exact path='/' component={List}/>
+          <Route path='/buisiness/:bid' component={Buisiness}/>
+          
         </Switch>
       </div>
     )

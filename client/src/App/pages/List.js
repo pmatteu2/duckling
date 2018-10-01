@@ -23,6 +23,7 @@ class List extends Component {
       showList: false,
       blist: [],
       ilist: [],
+      id:[],
     }
     this.handleChangeLocation = this.handleChangeLocation.bind(this);
     this.handleChangeTerm = this.handleChangeTerm.bind(this);
@@ -65,21 +66,24 @@ class List extends Component {
     axios.get('/api/search'+'/'+this.state.term+'/'+this.state.location)
     .then(
       function(response) {
-        console.log(response);
+        // console.log(response);
         // console.log('PJ')
         let data = response.data
         let templist=[];
         let tempilist = [];
+        let tempId = [];
         for (var i = 0; i < data.businesses.length; i++) {
           // console.log('pj3')
           templist[i] = data.businesses[i].name
           tempilist[i] = <img src={data.businesses[i].image_url} width="100" height="100" />
+          tempId[i] = data.businesses[i].id;
         }
         // console.log(templist)
         //console.log(this)
         here.setState({blist:templist});
         here.setState({ilist:tempilist});
         here.setState({showList:true});
+        here.setState({id:tempId})
       });
     event.preventDefault();
   }
@@ -87,27 +91,11 @@ class List extends Component {
   render() {
     const { list } = this.state;
     let that = this;
+
     return (
       <div className="App">
-        <h1>List of Items</h1>
-        {/* Check to see if any items are found*/}
-        {list.length ? (
-          <div>
-            {/* Render the list of items */}
-            {list.map((item) => {
-              return(
-                <div>
-                  {item}
-                </div>
-              );
-            })}
-          </div>
-        ) : (
-          <div>
-            <h2>No List Items Found</h2>
-          </div>
-        )
-      }
+        <h1>Search Yelp for Restaurants</h1>
+
       <form onSubmit={this.handleSubmit}>
         <label>
           Search Term:
@@ -121,8 +109,7 @@ class List extends Component {
         {this.state.showList ?         
          <ul>
           {that.state.blist.map(function(listValue,index){
-            // console.log(that)
-            return <Link to={'./business'}> <li key={index}>{listValue} <br></br>{that.state.ilist[index]} </li> </Link>;
+            return <Link to={{pathname:'./buisiness/'+that.state.id[index]}} > <li key={index}>{listValue} <br></br>{that.state.ilist[index]} </li> </Link>;
           })}
         </ul>
       : this.state.blist}
@@ -131,11 +118,5 @@ class List extends Component {
     );
   }
 }
- // <ul>
-          // {that.state.blist.map(function(listValue,index){
-          //   // console.log(that)
-          //   return <li key={index}>{listValue.name}</li>;
-          // })}
-        // </ul>
 
 export default List;
